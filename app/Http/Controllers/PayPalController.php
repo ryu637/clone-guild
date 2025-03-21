@@ -92,7 +92,7 @@ class PayPalController extends Controller
                 'order_id' => $response['id'],
                 'type' => 'escrow_deposit',
                 'transaction_id' => $response['purchase_units'][0]['payments']['captures'][0]['id'] ?? null,
-                'amount' => $response['purchase_units'][0]['payments']['captures'][0]['amount']['value'],
+                'amount' => $price,
                 'fee' => $fee,
                 'currency' => $response['purchase_units'][0]['payments']['captures'][0]['amount']['currency_code'],
                 'status' => 'COMPLETED',
@@ -102,7 +102,7 @@ class PayPalController extends Controller
 
 
             Admin::where('user_id','1')->update([
-                'balance' => DB::raw('balance + ' . $fee),
+                'balance' => DB::raw('balance + ' . $totalPrice),
                 'total_fee_revenue' => DB::raw('total_fee_revenue + ' . $fee),
                 'escrow_balance' => DB::raw('escrow_balance + ' . $price),
             ]);

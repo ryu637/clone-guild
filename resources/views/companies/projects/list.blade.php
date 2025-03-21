@@ -45,11 +45,14 @@
         font-size: 1rem;
     }
     .text-truncate {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-decoration: none;
-        color: #F4EEE0;
+    white-space: nowrap;       /* 改行を防ぐ */
+    overflow: hidden;          /* はみ出た部分を隠す */
+    text-overflow: ellipsis;   /* 省略記号（…）を表示 */
+    width: 400px;              /* 最大の幅を指定（任意のサイズに変更） */
+    display: block; 
+    color: #F4EEE0;
+    text-decoration: none;
+
     }
     .text-truncate:hover{
         text-decoration: underline;

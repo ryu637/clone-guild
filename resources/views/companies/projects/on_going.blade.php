@@ -46,7 +46,7 @@ h1 {
 
 /* ステータスバッジの強調 */
 .status-badge {
-    min-width: 30%;
+    /* min-width: 30%;
     text-align: center;
     border-radius: 1vw;
     padding: 1.5% 2%;
@@ -54,7 +54,17 @@ h1 {
     color: white;
     box-shadow: 0.2vw 0.2vw 0.6vw rgba(0, 0, 0, 0.2);
     font-weight: bold;
-    font-size: 1vw;
+    font-size: 1vw; */
+    width: 30%; /* 幅を固定 */
+    text-align: center;
+    border-radius: 1vw;
+    padding: 1.5% 2%;
+    background-color: #C976DE;
+    color: white;
+    box-shadow: 0.2vw 0.2vw 0.6vw rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: min(1vw, 0.5em); /* 文字がはみ出そうなら小さくなる */
+    white-space: wrap; /* テキストを折り返さない */
 }
 
 /* 価格の強調 */
@@ -119,15 +129,15 @@ a {
                         @endif
                     </div>
                     <div class="card-body">
-                        <p class="text-truncate">
+                        {{-- <p class="text-truncate">
                             {{ $project_progress ? $project_progress['description'] : 'No description available.' }}
-                        </p>
+                        </p> --}}
                         @if($project_progress)
-                        <a href="{{ route('company.freelancer.profile.show',$project_progress['application']['freelancer']['user']['id'])}}">Freelancer: {{ $project_progress ? $project_progress['application']['freelancer']['user']['name'] : 'N/A' }}</a>
+                        <p><a href="{{ route('company.freelancer.profile.show',$project_progress['application']['freelancer']['user']['id'])}}">Freelancer: {{ $project_progress ? $project_progress['application']['freelancer']['user']['name'] : 'N/A' }}</a></p>
                         @else
                         <p>Freelancer: {{ $project_progress ? $project_progress['application']['freelancer']['user']['name'] : 'N/A' }}</p>
                         @endif
-                        <span class="fw-bold">Price: {{ $project_progress ? $project_progress['reward_amount'] : '-' }}</span>
+                        {{-- <p class="fw-bold">Price: {{ $project_progress ? $project_progress['reward_amount'] : '-' }}</p> --}}
 
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <span>Deadline: {{ $project_progress ? \Carbon\Carbon::parse($project_progress['deadline'])->format('m/d') : '-' }}</span>

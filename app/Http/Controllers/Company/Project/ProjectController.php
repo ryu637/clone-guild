@@ -129,7 +129,7 @@ class ProjectController extends Controller
 
 
 
-        return redirect()->route('company.dashboard')->with('success','Project was edited');
+        return redirect()->route('company.project.on_going')->with('success','Project was edited');
     }
 
 
